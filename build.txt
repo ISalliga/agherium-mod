@@ -1,0 +1,4 @@
+author = Turquoise
+version = 0.4
+displayName = Agherium Mod
+homepage = https://discord.gg/3XbTBAb
