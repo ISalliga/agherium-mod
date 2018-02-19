@@ -16,7 +16,7 @@ namespace AgheriumMod.NPCs.Bosses
     {
         int venomtime = 0;
         int despawn = 0;
-        public int SpiderSpawn = 180;
+        public int SpiderSpawn = 230;
         public int WebTime = 0;
         public int FangTime = 0;
         bool planteraalive = false;
@@ -203,8 +203,7 @@ namespace AgheriumMod.NPCs.Bosses
             }
             if (SpiderSpawn <= 0)
             {
-                SpiderSpawn += 180;
-                NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("RocketSpider"));
+                SpiderSpawn += 230;
                 NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("RocketSpider"));
             }
             npc.ai[0]++;
@@ -219,6 +218,7 @@ namespace AgheriumMod.NPCs.Bosses
             npc.frameCounter %= Main.npcFrameCount[npc.type];
             int frame = (int)npc.frameCounter;
             npc.frame.Y = frame * frameHeight;
+            npc.spriteDirection = npc.direction;
         }
     }
 }
