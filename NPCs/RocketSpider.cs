@@ -27,20 +27,20 @@ namespace AgheriumMod.NPCs
         public override void SetDefaults()
         {
             npc.lifeMax = 400;
-            npc.aiStyle = 14;
+            npc.aiStyle = 74;
             npc.damage = 85;
             Main.npcFrameCount[npc.type] = 2;
             npc.defense = 25;
             animationType = 62;
             npc.knockBackResist = 0f;
-            npc.width = 62;
-            npc.height = 42;
+            npc.width = 42;
+            npc.height = 62;
             npc.value = Item.buyPrice(0, 0, 0, 0);
             npc.npcSlots = 0.5f;
             npc.lavaImmune = true;
             npc.noGravity = true;
             npc.scale = 1f;
-            npc.noTileCollide = true;
+            npc.noTileCollide = false;
             npc.HitSound = SoundID.NPCHit1;
             npc.DeathSound = SoundID.NPCDeath1;
             for (int k = 0; k < npc.buffImmune.Length; k++)
