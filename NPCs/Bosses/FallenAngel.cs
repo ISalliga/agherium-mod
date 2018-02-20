@@ -21,6 +21,8 @@ namespace AgheriumMod.NPCs.Bosses
 		public int laserSpreadTime = 0;
 		public int laserSpreadChance = 0;
 		public int laserOrbTime = 0;
+		public int laserOrbTime2 = 0;
+		public int teleportType = 0;
         public bool saidPhase2 = false;
 		public bool saidPhase3 = false;
 		public override void SetStaticDefaults()
@@ -33,8 +35,8 @@ namespace AgheriumMod.NPCs.Bosses
             npc.width = 24;
             npc.height = 48;
             npc.damage = 37;
-            npc.defense = 8;
-            npc.lifeMax = 19800;
+            npc.defense = 3;
+            npc.lifeMax = 10500;
             npc.HitSound = SoundID.NPCHit4;
             npc.DeathSound = SoundID.NPCDeath1;
             npc.value = Item.buyPrice(0, 3, 0, 0);
@@ -53,6 +55,12 @@ namespace AgheriumMod.NPCs.Bosses
 			npc.buffImmune[BuffID.Daybreak] = true;
 			npc.lavaImmune = true;
         }
+		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+		{
+		    npc.lifeMax = (int)(npc.lifeMax + (npc.lifeMax * 0.625f) * bossLifeScale);
+			npc.damage += (int)(npc.damage * 0.6f);
+			npc.defense = (int)(npc.defense + numPlayers);
+		}
         public override void BossLoot(ref string name, ref int potionType)
         {
            if (!Main.expertMode)
@@ -126,7 +134,7 @@ namespace AgheriumMod.NPCs.Bosses
                     double startAngle = Math.Atan2(npc.velocity.X, npc.velocity.Y) - spread / 2;
                     double deltaAngle = spread / 8f;
                     double offsetAngle;
-                    int damage = 36;
+					int damage = 32;
                     int projectileShot = 100;
                     int i;
                     for (i = 0; i < 7; i++)
@@ -145,12 +153,13 @@ namespace AgheriumMod.NPCs.Bosses
 				teleportTime++;
 				if (teleportTime >= 240)
 				{
+					teleportType = Main.rand.Next(1, 4);
 					Vector2 value9 = new Vector2(npc.position.X + (float)npc.width * 0.5f, npc.position.Y + (float)npc.height * 0.5f);
                     float spread = 45f * 0.0174f;
                     double startAngle = Math.Atan2(npc.velocity.X, npc.velocity.Y) - spread / 2;
                     double deltaAngle = spread / 8f;
                     double offsetAngle;
-                    int damage = 36;
+					int damage = 31;
                     int projectileShot = 100;
                     int i;
                     for (i = 0; i < 7; i++)
@@ -159,8 +168,26 @@ namespace AgheriumMod.NPCs.Bosses
 						Projectile.NewProjectile(value9.X, value9.Y, (float)(Math.Sin(offsetAngle) * 5f), (float)(Math.Cos(offsetAngle) * 5f), projectileShot, damage, 0f, Main.myPlayer, 0f, 0f);
 						Projectile.NewProjectile(value9.X, value9.Y, (float)(-Math.Sin(offsetAngle) * 5f), (float)(-Math.Cos(offsetAngle) * 5f), projectileShot, damage, 0f, Main.myPlayer, 0f, 0f);
 					}
-					npc.position.X = Main.player[npc.target].position.X - Main.rand.Next(-250, 250);
-					npc.position.Y = Main.player[npc.target].position.Y - Main.rand.Next(-250, 250);
+					if (teleportType == 1)
+					{
+					npc.position.X = Main.player[npc.target].position.X - Main.rand.Next(-350, -250);
+					npc.position.Y = Main.player[npc.target].position.Y;
+					}
+					if (teleportType == 2)
+					{
+					npc.position.X = Main.player[npc.target].position.X - Main.rand.Next(250, 350);
+					npc.position.Y = Main.player[npc.target].position.Y;
+					}
+					if (teleportType == 3)
+					{
+					npc.position.X = Main.player[npc.target].position.X;
+					npc.position.Y = Main.player[npc.target].position.Y - Main.rand.Next(250, 350);
+					}
+					if (teleportType == 4)
+					{
+					npc.position.X = Main.player[npc.target].position.X;
+					npc.position.Y = Main.player[npc.target].position.Y - Main.rand.Next(-350, -250);
+					}
 					teleportTime = 0;
 				}
 			}
@@ -172,7 +199,7 @@ namespace AgheriumMod.NPCs.Bosses
                     {
                         float Speed = 6.5f;
                         Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
-                        int damage = 46;
+						int damage = 29;
                         int type = mod.ProjectileType("MiniArchorb");
                         float rotation = (float)Math.Atan2(vector8.Y - (P.position.Y + (P.height * 0.5f)), vector8.X - (P.position.X + (P.width * 0.5f)));
                         int num54 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, damage, 0f, Main.myPlayer);
@@ -182,6 +209,27 @@ namespace AgheriumMod.NPCs.Bosses
                     }
 					laserOrbTime = 0;
 				}
+			if (Main.expertMode)
+			{
+				if (phase >= 2)
+				{
+					laserOrbTime2++;
+					if (laserOrbTime2 >= 320)
+					{
+						for (int k = 0; k < 3; k++)
+						{
+							float Speed = 6.001f;  //projectile speed
+							Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
+							int damage = 27;
+							int type = mod.ProjectileType("MegaArchorb");  //put your projectile
+							float rotation = (float)Math.Atan2(vector8.Y - (P.position.Y + (P.height * 0.5f)), vector8.X - (P.position.X + (P.width * 0.5f)));
+							int num54 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, damage, 0f, Main.myPlayer);
+							laserOrbTime2 = 0;
+						}
+						laserOrbTime2 = 0;
+					}
+				}
+			}
         }
         public override void FindFrame(int frameHeight)
         {
