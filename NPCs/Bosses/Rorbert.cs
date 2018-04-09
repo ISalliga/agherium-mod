@@ -76,6 +76,7 @@ namespace AgheriumMod.NPCs.Bosses
 				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("RorbertBag"), 1);
             }
             potionType = ItemID.GreaterHealingPotion;
+			AgheriumMod.downedRorbert = true;
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {

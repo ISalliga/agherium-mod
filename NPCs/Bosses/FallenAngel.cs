@@ -74,6 +74,7 @@ namespace AgheriumMod.NPCs.Bosses
 				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("AngelBag"), 1);
             }
             potionType = ItemID.GreaterHealingPotion;
+			AgheriumMod.downedAngel = true;
         }
         public override void AI()
         {
@@ -218,7 +219,7 @@ namespace AgheriumMod.NPCs.Bosses
 					{
 						for (int k = 0; k < 3; k++)
 						{
-							float Speed = 6.001f;  //projectile speed
+							float Speed = 6f;  //projectile speed
 							Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
 							int damage = 27;
 							int type = mod.ProjectileType("MegaArchorb");  //put your projectile
