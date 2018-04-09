@@ -1,9 +1,8 @@
 Welcome to Agherium!
 This mod currently adds:
 30+ Items
-3 Bosses
-And a cool gadget dropped by the Lunatic Cultist that shrinks enemies!
+4 Bosses
 
-Just the Owner: Turquoise. (Turquoise on Discord.)
-CopperPlus mod creator, Lore Sharer, Helper, and practically Co-Owner as well: Const. (const int IQ = 0; on Discord)
+Creator: Turquoise. (Turquoise (Ben) on Discord.)
+CopperPlus mod creator, Lore Sharer, Helper, and Co-Owner: Const. (the new username on Discord)
 Other helpers: ArcheRion720
