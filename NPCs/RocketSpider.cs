@@ -26,11 +26,11 @@ namespace AgheriumMod.NPCs
 
         public override void SetDefaults()
         {
-            npc.lifeMax = 400;
+            npc.lifeMax = 300;
             npc.aiStyle = 74;
             npc.damage = 85;
             Main.npcFrameCount[npc.type] = 2;
-            npc.defense = 25;
+            npc.defense = 8;
             animationType = 62;
             npc.knockBackResist = 0f;
             npc.width = 42;
@@ -50,7 +50,7 @@ namespace AgheriumMod.NPCs
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            npc.lifeMax = 500;
+            npc.lifeMax = 420;
         }
         public override void FindFrame(int frameHeight)
         {
