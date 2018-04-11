@@ -14,16 +14,20 @@ namespace AgheriumMod.NPCs.Bosses
     [AutoloadBossHead]
     public class SpiderQueen : ModNPC
     {
-        int venomtime = 0;
+		int guardCount;
+		int venomtime = 0;
+		int fangtime = 0;
         int despawn = 0;
-        public int SpiderSpawn = 230;
-        public int WebTime = 0;
-        public int FangTime = 0;
+		int crosshairTime = 0;
+		int webtime = 0;
         bool planteraalive = false;
         bool injungle = false;
         bool expert = false;
+		int SpiderSpawn = 230;
         bool saidJungle = false;
         bool saidPlantera = false;
+		bool invPhase1 = false;
+		bool invPhase2 = false;
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Aarhac'n, the Spider Queen");
@@ -72,6 +76,36 @@ namespace AgheriumMod.NPCs.Bosses
         }
         public override void AI()
         {
+			guardCount = NPC.CountNPCS(mod.NPCType("SpiderGuard"));
+			if (guardCount > 0)
+			{
+				npc.dontTakeDamage = true;
+				npc.alpha = 150;
+			}
+			else
+			{
+				npc.dontTakeDamage = false;
+				npc.alpha = 0;
+			}
+			fangtime++;
+			if (fangtime > 180)
+			{
+				Vector2 value9 = new Vector2(npc.position.X + (float)npc.width * 0.5f, npc.position.Y + (float)npc.height * 0.5f);
+				float spread = 25f * 0.0174f;
+				double startAngle = Math.Atan2(npc.velocity.X, npc.velocity.Y) - spread / 2;
+				double deltaAngle = spread / 8f;
+				double offsetAngle;
+				int damage = 32;
+				int projectileShot = mod.ProjectileType("Fang");
+				int i;
+				for (i = 0; i < 4; i++)
+				{
+					offsetAngle = (startAngle + deltaAngle * (i + i * i) / 2f) + 32f * i;
+					Projectile.NewProjectile(value9.X, value9.Y, (float)(Math.Sin(offsetAngle) * 5f), (float)(Math.Cos(offsetAngle) * 5f), projectileShot, damage, 0f, Main.myPlayer, 0f, 0f);
+					Projectile.NewProjectile(value9.X, value9.Y, (float)(-Math.Sin(offsetAngle) * 5f), (float)(-Math.Cos(offsetAngle) * 5f), projectileShot, damage, 0f, Main.myPlayer, 0f, 0f);
+				}
+				fangtime = 0;
+			}
             if (Main.expertMode)
             {
                 expert = true;
@@ -151,20 +185,17 @@ namespace AgheriumMod.NPCs.Bosses
             {
                 if (!injungle && !planteraalive)
                 {
-                    WebTime += 1;
-                    FangTime += 1;
+					venomtime += 1;
                 }
                 else if (injungle && !planteraalive)
                 {
-                    WebTime += 2;
-                    FangTime += 2;
+                    venomtime += 2;
                 }
                 else if (injungle && planteraalive)
                 {
-                    WebTime += 4;
-                    FangTime += 4;
+                    venomtime += 4;
                 }
-                if (WebTime >= 360 && Main.expertMode)
+                if (webtime >= 360 && Main.expertMode)
                 {
                     {
                         float Speed = 20f;  //projectile speed
@@ -174,48 +205,72 @@ namespace AgheriumMod.NPCs.Bosses
                         float rotation = (float)Math.Atan2(vector8.Y - (P.position.Y + (P.height * 0.5f)), vector8.X - (P.position.X + (P.width * 0.5f)));
                         int num54 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, damage, 0f, 0);
                     }
-                    WebTime = 0;
+                    webtime = 0;
                 }
-                if (FangTime >= 150)
-                {
-                    for (int k = 0; k < 8; k++)
-                    {
-                        float Speed = 15f + Main.rand.Next(-10, 10);  //projectile speed
-                        Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
-                        int damage = 55;  //projectile damage
-                        int type = mod.ProjectileType("Fang");  //put your projectile
-                        float rotation = (float)Math.Atan2(vector8.Y - (P.position.Y + (P.height * 0.5f)), vector8.X - (P.position.X + (P.width * 0.5f)));
-                        int num54 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, damage, 0f, 0);
-                    }
-                    FangTime = 0;
-                }
-            }
-            if (!injungle && !planteraalive)
-            {
-                SpiderSpawn -= 1;
-            }
-            if (injungle && !planteraalive)
-            {
-                SpiderSpawn -= 2;
-            }
-            if (injungle && planteraalive)
-            {
-                SpiderSpawn -= 5;
-            }
-            if (SpiderSpawn <= 0)
-            {
-                SpiderSpawn += 230;
-                NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("RocketSpider"));
-            }
-            npc.ai[0]++;
-            if (npc.target < 0 || npc.target == 255 || Main.player[npc.target].dead || !Main.player[npc.target].active)
-            {
-                npc.TargetClosest(true);
-            }
-        }
+				if (!injungle && !planteraalive)
+				{
+					SpiderSpawn -= 1;
+				}
+				if (injungle && !planteraalive)
+				{
+					SpiderSpawn -= 2;
+				}
+				if (injungle && planteraalive)
+				{
+					SpiderSpawn -= 5;
+				}
+				if (SpiderSpawn <= 0)
+				{
+					SpiderSpawn += 230;
+					{
+						float Speed = 9f;  //projectile speed
+						Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
+						int damage = 18;  //projectile damage
+						int type = mod.ProjectileType("PropelledSpider");  //put your projectile
+						float rotation = (float)Math.Atan2(vector8.Y - (player.position.Y + (player.height * 0.5f)), vector8.X - (player.position.X + (player.width * 0.5f)));
+						int num54 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, damage, 0f, Main.myPlayer);
+					}
+				}
+				npc.ai[0]++;
+				if (npc.target < 0 || npc.target == 255 || Main.player[npc.target].dead || !Main.player[npc.target].active)
+				{
+					npc.TargetClosest(true);
+				}
+				if (npc.life < npc.lifeMax * 0.6 && invPhase1 == false)
+				{
+					NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("SpiderGuard"));
+					invPhase1 = true;
+				}
+				if (npc.life < npc.lifeMax * 0.3 && invPhase2 == false)
+				{
+					NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("SpiderGuard"));
+					invPhase2 = true;
+				}
+				
+			}
+			if (npc.life < npc.lifeMax * 0.6 && guardCount == 0)
+			{
+				crosshairTime++;
+				if (crosshairTime > 230)
+				{
+					Projectile.NewProjectile(npc.Center.X + Main.rand.Next(-600, 600), npc.Center.Y + Main.rand.Next(-600, 600), 0,  0, mod.ProjectileType("RocketCrosshair"), 0, 0f, Main.myPlayer);
+					Projectile.NewProjectile(npc.Center.X + Main.rand.Next(-600, 600), npc.Center.Y + Main.rand.Next(-600, 600), 0,  0, mod.ProjectileType("RocketCrosshair"), 0, 0f, Main.myPlayer);
+					if (npc.life < npc.lifeMax * 0.3)
+					{
+						Projectile.NewProjectile(npc.Center.X + Main.rand.Next(-600, 600), npc.Center.Y + Main.rand.Next(-600, 600), 0,  0, mod.ProjectileType("RocketCrosshair"), 0, 0f, Main.myPlayer);
+						Projectile.NewProjectile(npc.Center.X + Main.rand.Next(-600, 600), npc.Center.Y + Main.rand.Next(-600, 600), 0,  0, mod.ProjectileType("RocketCrosshair"), 0, 0f, Main.myPlayer);
+					}
+					if (Main.expertMode)
+					{
+						Projectile.NewProjectile(npc.Center.X + Main.rand.Next(-600, 600), npc.Center.Y + Main.rand.Next(-600, 600), 0,  0, mod.ProjectileType("RocketCrosshair"), 0, 0f, Main.myPlayer);
+					}
+					crosshairTime = 0;
+				}
+			}
+		}
         public override void FindFrame(int frameHeight)
         {
-            npc.spriteDirection = npc.direction;
+            npc.spriteDirection = 0;
         }
     }
 }
