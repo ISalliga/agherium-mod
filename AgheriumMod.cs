@@ -34,34 +34,9 @@ namespace AgheriumMod
 			if (bossList != null)
 			{
 				bossList.Call("AddBossWithInfo", "Soul of the Guide", 0.001f, (Func<bool>)(() => downedSoul), string.Format("Use a [i:{0}]", ItemType("SoulActivator")));
-			}
-			else
-			{
-				
-			}
-			if (bossList != null)
-			{
 				bossList.Call("AddBossWithInfo", "Fallen Angel", 7.5f, (Func<bool>)(() => downedAngel), string.Format("Use a [i:{0}]", ItemType("UnholyBeacon")));
-			}
-			else
-			{
-				
-			}
-			if (bossList != null)
-			{
 				bossList.Call("AddBossWithInfo", "Rorbert", 5.1f, (Func<bool>)(() => downedRorbert), string.Format("Use a [i:{0}]", ItemType("StrangeMachine")));
-			}
-			else
-			{
-				
-			}
-			if (bossList != null)
-			{
 				bossList.Call("AddBossWithInfo", "Aarhac'n, the Spider Queen", 10.2f, (Func<bool>)(() => downedSpodermen), string.Format("Use a [i:{0}]", ItemType("SpiderEgg")));
-			}
-			else
-			{
-				
 			}
 		}
 	}
