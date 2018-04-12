@@ -43,7 +43,7 @@ namespace AgheriumMod.NPCs.Bosses
             npc.knockBackResist = 0f;
             npc.aiStyle = 0;
             npc.boss = true;
-            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/angelic_modernization");
+            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/tinkersaint");
             npc.noGravity = true;
 			npc.noTileCollide = true; 
 			npc.buffImmune[BuffID.Poisoned] = true;
@@ -74,7 +74,7 @@ namespace AgheriumMod.NPCs.Bosses
 				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("AngelBag"), 1);
             }
             potionType = ItemID.GreaterHealingPotion;
-			AgheriumMod.downedAngel = true;
+			AgheriumWorld.downedAngel = true;
         }
         public override void AI()
         {

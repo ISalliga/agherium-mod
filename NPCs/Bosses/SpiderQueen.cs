@@ -72,7 +72,7 @@ namespace AgheriumMod.NPCs.Bosses
 				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("SpiderBag"), 1);
             }
             potionType = ItemID.GreaterHealingPotion;
-			AgheriumMod.downedSpodermen = true;
+			AgheriumWorld.downedSpodermen = true;
         }
         public override void AI()
         {

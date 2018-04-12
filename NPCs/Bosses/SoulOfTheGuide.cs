@@ -55,7 +55,7 @@ namespace AgheriumMod.NPCs.Bosses
             npc.damage = 15;
             npc.defense = 2;
             npc.lifeMax = 2500;
-            npc.HitSound = SoundID.NPCHit4;
+            npc.HitSound = SoundID.NPCHit1;
             npc.DeathSound = SoundID.NPCDeath1;
             npc.value = Item.buyPrice(0, 3, 0, 0);
             npc.knockBackResist = 0f;
@@ -94,8 +94,7 @@ namespace AgheriumMod.NPCs.Bosses
             {
 				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("SoulBag"), 1);
             }
-            potionType = ItemID.LesserHealingPotion;
-			AgheriumMod.downedSoul = true;
+			AgheriumWorld.downedSoul = true;
         }
         public override void AI()
         {
