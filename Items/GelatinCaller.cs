@@ -12,7 +12,7 @@ namespace AgheriumMod.Items
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Gelatin Caller"); 
-            Tooltip.SetDefault("Calls one Gelatinian"); 
+            Tooltip.SetDefault("Calls forth Orby"); 
         }
         public override void SetDefaults()
         {
