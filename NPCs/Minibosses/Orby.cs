@@ -67,10 +67,9 @@ namespace AgheriumMod.NPCs.Minibosses
             {
                 NPC.NewNPC((int)npc.Center.X + Main.rand.Next(-50, 50), (int)npc.Center.Y + Main.rand.Next(-50, 50), mod.NPCType("OrbyClone"));
                 NPC.NewNPC((int)npc.Center.X + Main.rand.Next(-50, 50), (int)npc.Center.Y + Main.rand.Next(-50, 50), mod.NPCType("OrbyClone"));
-                NPC.NewNPC((int)npc.Center.X + Main.rand.Next(-50, 50), (int)npc.Center.Y + Main.rand.Next(-50, 50), mod.NPCType("OrbyClone"));
                 spawned++;
             }
-            if (NPC.CountNPCS(mod.NPCType("OrbyClone")) >= 1)
+            if (NPC.CountNPCS(mod.NPCType("OrbyClone")) >= 3)
             {
                 immortal = true;
             }
@@ -90,7 +89,6 @@ namespace AgheriumMod.NPCs.Minibosses
             if (duplicatetime >= 120)
             {
                 duplicatetime -= 120;
-                NPC.NewNPC((int)npc.Center.X + Main.rand.Next(-50, 50), (int)npc.Center.Y + Main.rand.Next(-50, 50), mod.NPCType("OrbyClone"));
                 NPC.NewNPC((int)npc.Center.X + Main.rand.Next(-50, 50), (int)npc.Center.Y + Main.rand.Next(-50, 50), mod.NPCType("OrbyClone"));
                 NPC.NewNPC((int)npc.Center.X + Main.rand.Next(-50, 50), (int)npc.Center.Y + Main.rand.Next(-50, 50), mod.NPCType("OrbyClone"));
             }
