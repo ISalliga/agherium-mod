@@ -52,6 +52,13 @@ namespace AgheriumMod.Items.SoulOfTheGuideGear
 			recipe.AddTile(TileID.Anvils);
 			recipe.SetResult(this, 1);
 			recipe.AddRecipe();
+			
+			ModRecipe recipe1 = new ModRecipe(mod);
+			recipe1.AddIngredient(ItemID.LeadBar, 7);
+            recipe1.AddIngredient(ItemID.Lens, 1);
+			recipe1.AddTile(TileID.Anvils);
+			recipe1.SetResult(this, 1);
+			recipe1.AddRecipe();
 		}
     }
 }
