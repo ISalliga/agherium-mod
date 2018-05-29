@@ -9,6 +9,9 @@ namespace AgheriumMod.Projectiles
 {
     public class MegaArchorbFriendly : ModProjectile
     {
+		public int scaleTimer1 = 0;
+		public int scaleTimer2 = 0;
+		public int scalePhase = 1;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Mega Archorb");
@@ -16,10 +19,12 @@ namespace AgheriumMod.Projectiles
         public override void SetDefaults()
         {
             projectile.width = 50;
-            projectile.height = 50; 
+            projectile.height = 50;
+			projectile.tileCollide = false;
+			projectile.alpha = 50;
             projectile.friendly = true;
             projectile.penetrate = 1;
-            projectile.timeLeft = 250;
+            projectile.timeLeft = 60;
         }
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
@@ -36,7 +41,7 @@ namespace AgheriumMod.Projectiles
             int damage = 30;
             int projectileShot = mod.ProjectileType("MiniArchorbFriendlyShortFuse");
             int i;
-            for (i = 0; i < 5; i++)
+            for (i = 0; i < 3; i++)
             {
                 offsetAngle = (startAngle + deltaAngle * (i + i * i) / 2f) + 32f * i;
                 Projectile.NewProjectile(value9.X, value9.Y, (float)(Math.Sin(offsetAngle) * 5f), (float)(Math.Cos(offsetAngle) * 5f), projectileShot, damage, 0f, Main.myPlayer, 0f, 0f);

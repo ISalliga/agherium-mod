@@ -15,16 +15,13 @@ namespace AgheriumMod.Projectiles
         }
         public override void SetDefaults()
         {
-            projectile.width = 20;
+            projectile.width = 32;
 			projectile.friendly = true;
-            projectile.height = 20; 
+            projectile.height = 32; 
             projectile.penetrate = 1;
-            projectile.timeLeft = 100;
-        }
-        public override void AI()
-        {
-            projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X) + 1.57f;
-            projectile.ai[1]++;
+			projectile.tileCollide = false;
+            projectile.timeLeft = 50;
+			projectile.alpha = 50;
         }
         public override void Kill(int timeLeft)
         {
