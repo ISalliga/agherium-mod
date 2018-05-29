@@ -31,6 +31,7 @@ namespace AgheriumMod.NPCs.Bosses
 			npc.scale = 1f;
             npc.width = 24;
             npc.height = 48;
+			Main.npcFrameCount[npc.type] = 5;
             npc.damage = 24;
             npc.defense = 3;
             npc.lifeMax = 17000;
@@ -152,6 +153,12 @@ namespace AgheriumMod.NPCs.Bosses
         public override void FindFrame(int frameHeight)
         {
             npc.spriteDirection = npc.direction;
+			npc.frameCounter++;
+			if (npc.frameCounter >= 5) // ticks per frame
+			{
+				npc.frame.Y = (npc.frame.Y / frameHeight + 1) % Main.npcFrameCount[npc.type] * frameHeight;
+				npc.frameCounter = 0;
+			}
         }
     }
 }

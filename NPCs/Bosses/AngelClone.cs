@@ -33,6 +33,7 @@ namespace AgheriumMod.NPCs.Bosses
             npc.height = 48;
             npc.damage = 24;
             npc.defense = 3;
+			Main.npcFrameCount[npc.type] = 5;
             npc.lifeMax = 7000;
             npc.HitSound = SoundID.NPCHit4;
             npc.DeathSound = SoundID.NPCDeath1;
@@ -150,6 +151,12 @@ namespace AgheriumMod.NPCs.Bosses
         public override void FindFrame(int frameHeight)
         {
             npc.spriteDirection = npc.direction;
+			npc.frameCounter++;
+			if (npc.frameCounter >= 5) // ticks per frame
+			{
+				npc.frame.Y = (npc.frame.Y / frameHeight + 1) % Main.npcFrameCount[npc.type] * frameHeight;
+				npc.frameCounter = 0;
+			}
         }
     }
 }

@@ -54,6 +54,7 @@ namespace AgheriumMod.NPCs.Bosses
 			npc.buffImmune[BuffID.Frostburn] = true;
 			npc.buffImmune[BuffID.Daybreak] = true;
 			npc.lavaImmune = true;
+			Main.npcFrameCount[npc.type] = 5;
         }
 		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
 		{
@@ -235,6 +236,12 @@ namespace AgheriumMod.NPCs.Bosses
         public override void FindFrame(int frameHeight)
         {
             npc.spriteDirection = npc.direction;
+			npc.frameCounter++;
+			if (npc.frameCounter >= 8) // ticks per frame
+			{
+				npc.frame.Y = (npc.frame.Y / frameHeight + 1) % Main.npcFrameCount[npc.type] * frameHeight;
+				npc.frameCounter = 0;
+			}
         }
     }
 }
