@@ -15,12 +15,12 @@ namespace AgheriumMod.Items.AgheriumGear
             item.damage = 13;
             item.ranged = true;
             item.width = 26;
-            item.height = 50;
+            item.height = 40;
             item.crit = 10; 
             item.useTime = 25;
             item.useAnimation = 20;
             item.useStyle = 5;
-            item.noMelee = true; 
+            item.noMelee = true;
             item.knockBack = 4.25f;
             item.value = 9000;
             item.rare = 3;
@@ -32,7 +32,7 @@ namespace AgheriumMod.Items.AgheriumGear
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Agherium Shotbow");
-			Tooltip.SetDefault("Shoots six arrows at once!");
+			Tooltip.SetDefault("Shoots six arrows at once! \nTsuki's weapon of choice. Might as well make this his dev item, even though he's not a developer.");
         }
         public override bool Shoot(Player player, ref Microsoft.Xna.Framework.Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
