@@ -16,8 +16,8 @@ namespace AgheriumMod.Items
         }
         public override void SetDefaults()
         {
-            item.width = 20;
-            item.height = 20; 
+            item.width = 32;
+            item.height = 42; 
             item.maxStack = 20; 
             item.value = 0; 
             item.rare = 11; 
@@ -43,6 +43,14 @@ namespace AgheriumMod.Items
 			recipe.AddTile(TileID.MythrilAnvil);
 			recipe.SetResult(this, 1);
 			recipe.AddRecipe();
+			ModRecipe recipe1 = new ModRecipe(mod);
+			recipe1.AddIngredient(ItemID.SoulofNight, 3);
+			recipe1.AddIngredient(ItemID.SoulofLight, 3);
+			recipe1.AddIngredient(ItemID.LeadBar, 5);
+			recipe1.AddIngredient(ItemID.Feather, 5);
+			recipe1.AddTile(TileID.MythrilAnvil);
+			recipe1.SetResult(this, 1);
+			recipe1.AddRecipe();
 		}
     }
 }
