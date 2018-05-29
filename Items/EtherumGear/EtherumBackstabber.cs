@@ -21,7 +21,7 @@ namespace AgheriumMod.Items.EtherumGear
 			item.height = 36;
 			item.useTime = 17;
 			item.useAnimation = 17;
-			item.shoot = mod.ProjectileType("EtherPulsar");
+			item.shoot = mod.ProjectileType("StabbyThing");
 			item.shootSpeed = 10;
 			item.useStyle = 1;
 			item.mana = 7;
@@ -48,4 +48,3 @@ namespace AgheriumMod.Items.EtherumGear
 		}
 	}
 }
-
