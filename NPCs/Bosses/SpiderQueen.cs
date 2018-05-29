@@ -57,7 +57,7 @@ namespace AgheriumMod.NPCs.Bosses
 			npc.buffImmune[BuffID.Frostburn] = true;
 			npc.buffImmune[BuffID.Daybreak] = true;
 			npc.lavaImmune = true;
-            Main.npcFrameCount[npc.type] = 3;
+            Main.npcFrameCount[npc.type] = 1;
         }
         public override void BossLoot(ref string name, ref int potionType)
         {
@@ -267,10 +267,7 @@ namespace AgheriumMod.NPCs.Bosses
 					crosshairTime = 0;
 				}
 			}
-		}
-        public override void FindFrame(int frameHeight)
-        {
-            npc.spriteDirection = 0;
+			npc.direction = 0;
         }
     }
 }
