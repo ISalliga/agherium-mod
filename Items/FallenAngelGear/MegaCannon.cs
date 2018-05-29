@@ -8,11 +8,11 @@ namespace AgheriumMod.Items.FallenAngelGear
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Mega Cannon");
-			Tooltip.SetDefault("Fires out one large laser orb that explodes into more laser orbs, which explode into EVEN MORE LASERS!!!");
+			Tooltip.SetDefault("Fires out one large laser orb that explodes into more laser orbs, which explode into EVEN MORE LASERS!");
 		}
 		public override void SetDefaults()
 		{
-			item.damage = 68;
+			item.damage = 75;
 			item.noMelee = true;
 			item.magic = true;
 			item.width = 20;

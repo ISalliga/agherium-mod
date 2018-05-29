@@ -8,8 +8,7 @@ namespace AgheriumMod.Items.FallenAngelGear
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Arch-Angel's Staff");
-			Tooltip.SetDefault("Laser-spam like no other."
-			+ "/nFires out several laser orbs that explode into more lasers!");
+			Tooltip.SetDefault("Fires two laser orbs which follow the cursor then explode");
 		}
 		public override void SetDefaults()
 		{
@@ -18,8 +17,8 @@ namespace AgheriumMod.Items.FallenAngelGear
 			item.magic = true;
 			item.width = 50;
 			item.height = 50;
-			item.useTime = 9;
-			item.useAnimation = 27;
+			item.useTime = 18;
+			item.useAnimation = 33;
 			item.shoot = mod.ProjectileType("MiniArchorbFriendly");
 			item.shootSpeed = 8;
 			item.useStyle = 1;
