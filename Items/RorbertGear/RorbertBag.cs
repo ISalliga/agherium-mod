@@ -38,6 +38,7 @@ namespace AgheriumMod.Items.RorbertGear
         public override void OpenBossBag(Player player)
         {
             player.QuickSpawnItem(mod.ItemType("MaterialBlob"), Main.rand.Next(26, 35));
+			player.QuickSpawnItem(mod.ItemType("SlimyBarricade"), 1);
         }
     }
 }

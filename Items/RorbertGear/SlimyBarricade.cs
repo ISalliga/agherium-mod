@@ -24,7 +24,7 @@ namespace AgheriumMod.Items.RorbertGear
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Slimy Barricade");
-            Tooltip.SetDefault("Makes acceleration sattic and increases jump height /n10% increased damage reduction /n'It's like you're wielding a castle made of superballs!'");
+            Tooltip.SetDefault("Makes acceleration static and increases jump height \n10% increased damage reduction \n'It's like you're wielding a castle made of superballs!'");
         }
 		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
