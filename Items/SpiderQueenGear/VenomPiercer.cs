@@ -17,7 +17,7 @@ namespace AgheriumMod.Items.SpiderQueenGear
         }
         public override void SetDefaults()
 		{
-			item.damage = 38;
+			item.damage = 35;
 			item.noMelee = true;
 			item.ranged = true;
 			item.autoReuse = true;                            //Channel so that you can held the weapon [Important]
