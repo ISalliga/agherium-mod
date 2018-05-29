@@ -45,8 +45,8 @@ namespace AgheriumMod.NPCs.Bosses
             Main.npcFrameCount[npc.type] = 1;
             npc.defense = 5;
             npc.knockBackResist = 0f;
-            npc.width = 158;
-            npc.height = 158;
+            npc.width = 92;
+            npc.height = 100;
             npc.value = Item.buyPrice(0, 2, 0, 11);
             npc.npcSlots = 1.2f;
             npc.lavaImmune = true;
