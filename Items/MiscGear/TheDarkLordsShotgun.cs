@@ -21,8 +21,8 @@ namespace AgheriumMod.Items.MiscGear
             item.ranged = true;
             item.width = 46;
             item.height = 20;
-            item.useTime = 30;
-            item.useAnimation = 30;
+            item.useTime = 38;
+            item.useAnimation = 38;
             item.useStyle = 5;
             item.noMelee = true; //so the item's animation doesn't do damage
             item.knockBack = 4.5f;

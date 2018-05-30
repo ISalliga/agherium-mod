@@ -16,7 +16,7 @@ namespace AgheriumMod.Items.MiscGear
 		}
 		public override void SetDefaults()
 		{
-			item.damage = 58;
+			item.damage = 35;
 			item.melee = true;
 			item.width = 46;
 			item.height = 50;

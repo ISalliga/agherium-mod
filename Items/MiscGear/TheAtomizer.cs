@@ -33,7 +33,7 @@ namespace AgheriumMod.Items.MiscGear
 		
 		public override bool Shoot(Player player, ref Microsoft.Xna.Framework.Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            int num6 = 4;
+            int num6 = 3;
             for (int index = 0; index < num6; ++index)
             {
                 float SpeedX = speedX + (float)Main.rand.Next(-50, 51) * 0.045f;

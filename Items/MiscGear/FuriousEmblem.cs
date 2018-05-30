@@ -40,7 +40,8 @@ namespace AgheriumMod.Items.MiscGear
 			recipe.AddIngredient(ItemID.SoulofMight, 5);
 			recipe.AddIngredient(ItemID.SoulofFright, 5);
 			recipe.AddIngredient(ItemID.SoulofSight, 5);
-            recipe.AddTile(TileID.MythrilAnvil);
+			recipe.AddIngredient(ItemID.LunarBar, 10);
+            recipe.AddTile(TileID.LunarCraftingStation);
             recipe.SetResult(this);
             recipe.AddRecipe();
 		}
