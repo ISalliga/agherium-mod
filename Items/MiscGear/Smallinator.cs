@@ -20,8 +20,8 @@ namespace AgheriumMod.Items.MiscGear
         {
             item.damage = 1;
             item.ranged = true;
-            item.width = 64;
-            item.height = 30;
+            item.width = 60;
+            item.height = 40;
             item.useTime = 34;
             item.useAnimation = 34;
             item.useStyle = 5;
