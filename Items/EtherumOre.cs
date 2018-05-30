@@ -8,7 +8,7 @@ namespace AgheriumMod.Items
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Etherum Ore");
-			Tooltip.SetDefault("Extracted from wood, this magical ore can harness the magical power of magic.");
+			Tooltip.SetDefault("Found in a chunk of Extractum, this magical ore can harness the magical power of magic.");
 		}
 		public override void SetDefaults()
 		{

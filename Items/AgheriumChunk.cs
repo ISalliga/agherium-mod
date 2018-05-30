@@ -8,7 +8,7 @@ namespace AgheriumMod.Items
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Agherium Chunk");
-			Tooltip.SetDefault("Extracted from dirt, this dexterity-enhancing chunk would make great ammo.");
+			Tooltip.SetDefault("Found in a chunk of Extractum, this dexterity-enhancing chunk would make great ammo.");
 		}
 		public override void SetDefaults()
 		{

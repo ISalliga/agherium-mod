@@ -8,7 +8,7 @@ namespace AgheriumMod.Items
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Zemmelite Shard");
-			Tooltip.SetDefault("Extracted from stone, this durable shard would make great armor.");
+			Tooltip.SetDefault("Found in a chunk of Extractum, this durable shard would make great armor.");
 		}
 		public override void SetDefaults()
 		{
