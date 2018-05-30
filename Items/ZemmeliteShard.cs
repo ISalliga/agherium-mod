@@ -18,14 +18,5 @@ namespace AgheriumMod.Items
 			item.rare = 2;
 			item.maxStack = 999;
 		}
-
-		public override void AddRecipes()
-		{
-			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.StoneBlock, 4);
-			recipe.AddTile(TileID.Extractinator);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
-		}
 	}
 }
