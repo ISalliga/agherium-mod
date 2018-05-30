@@ -11,6 +11,11 @@ namespace AgheriumMod.Items.MiscGear
 {
     public class Smallinator : ModItem
     {
+		public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Smallinator");
+            Tooltip.SetDefault("Shrinks enemies and, as long as the enemy's defense isn't below five, cuts their defense down");
+        }
         public override void SetDefaults()
         {
             item.damage = 1;
