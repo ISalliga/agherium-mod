@@ -30,7 +30,7 @@ namespace AgheriumMod.Items.SoulOfTheGuideGear
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Soulbinder");
-            Tooltip.SetDefault("1% extra damage to start off \nAs you use the accessory the value gets higher, resetting at 1% after 15%");
+            Tooltip.SetDefault("1% extra damage to start off \nAs you use the accessory the value gets higher, resetting at 1% after 25%");
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
@@ -40,7 +40,7 @@ namespace AgheriumMod.Items.SoulOfTheGuideGear
 				damageBonus += 0.01f;
 				damageBonusTime = 0;
 			}
-			if (damageBonus > 0.15f)
+			if (damageBonus >= 0.26f)
 			{
 				damageBonus = 0.01f;
 			}
