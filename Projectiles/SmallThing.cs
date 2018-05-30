@@ -37,11 +37,12 @@ namespace AgheriumMod.Projectiles
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-        	{
-        		{
-        			target.scale *= 0.5f;
-        		}
-        	}
+        	target.scale *= 0.5f;
+			if (target.defense > 5)
+			{
+			target.defense *= 0.8f;
+			}
+			else{}
         }
     }
 }
