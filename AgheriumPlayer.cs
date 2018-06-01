@@ -10,15 +10,22 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.GameInput;
+using AgheriumMod;
+using AgheriumMod.Items;
+using AgheriumMod.Items.MiscGear;
 
 namespace AgheriumMod
 {
 	public class AgheriumPlayer : ModPlayer
 	{
-		public int furyTimer = 20;
+		public static bool isFuryBeingForged = false;
+		public override void ResetEffects()
+		{
+			isFuryBeingForged = false;
+		}
 		public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
 		{
-			if (Main.LocalPlayer.armor.Any(item => item.type == mod.ItemType("FuriousEmblem")))
+			if (isFuryBeingForged == true)
 			{
 				Projectile.NewProjectile(player.Center.X, player.Center.Y, 0, 0, mod.ProjectileType("FuryJet"), 35, 0.5f, player.whoAmI, 0.0f, 0.0f);
 			}
