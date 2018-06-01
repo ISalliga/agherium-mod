@@ -12,13 +12,13 @@ namespace AgheriumMod.Items.AgheriumGear
     {
         public override void SetDefaults()
         {
-            item.damage = 13;
+            item.damage = 16;
             item.ranged = true;
             item.width = 26;
             item.height = 40;
             item.crit = 10; 
-            item.useTime = 25;
-            item.useAnimation = 20;
+            item.useTime = 30;
+            item.useAnimation = 30;
             item.useStyle = 5;
             item.noMelee = true;
             item.knockBack = 4.25f;
@@ -36,7 +36,7 @@ namespace AgheriumMod.Items.AgheriumGear
         }
         public override bool Shoot(Player player, ref Microsoft.Xna.Framework.Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            int num6 = 6;
+            int num6 = Main.rand.Next(2, 5);
             for (int index = 0; index < num6; ++index)
             {
                 float SpeedX = speedX + (float)Main.rand.Next(-10, 11) * 0.045f;
