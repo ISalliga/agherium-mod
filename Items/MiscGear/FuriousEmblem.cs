@@ -5,6 +5,9 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
+using AgheriumMod;
+using AgheriumMod.Items;
+using AgheriumMod.Items.MiscGear;
 
 namespace AgheriumMod.Items.MiscGear
 {
@@ -21,7 +24,7 @@ namespace AgheriumMod.Items.MiscGear
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Furious Emblem");
-            Tooltip.SetDefault("7% increased damage \nGetting hit releases a furious flame jet");
+            Tooltip.SetDefault("7% increased damage \nGetting hit releases a furious flame jet \n'Fury is being forged'");
         }
 		public override void UpdateAccessory(Player player, bool hideVisual)
         {
@@ -29,6 +32,7 @@ namespace AgheriumMod.Items.MiscGear
             player.meleeDamage += (int)1.07f;
             player.rangedDamage += (int)1.07f;
             player.minionDamage += (int)1.07f;
+			AgheriumPlayer.isFuryBeingForged = true;
         }
 		public override void AddRecipes()
 		{       
