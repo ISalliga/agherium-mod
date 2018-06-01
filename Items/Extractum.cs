@@ -14,6 +14,7 @@ namespace AgheriumMod.Items
 {
 	public class Extractum : ModItem
 	{
+		private Player player;
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Extractum");
@@ -26,13 +27,12 @@ namespace AgheriumMod.Items
 			item.height = 16;
 			item.value = 0;
 			item.useStyle = 1;
-			item.consumable = true;
 			item.rare = 2;
 			item.useTime = 5;
 			item.useAnimation = 5;
 			item.autoReuse = true;
+			item.createTile = mod.TileType("ExtractumTile");
 			item.maxStack = 999;
-			
 		}
 		public override void ExtractinatorUse(ref int resultType, ref int resultStack)
 		{
@@ -49,7 +49,7 @@ namespace AgheriumMod.Items
 			{
 				resultType = mod.ItemType("EtherumOre");
 			}
-			resultStack = Main.rand.Next(4);
+			resultStack = Main.rand.Next(7);
 		}
 		public override void AddRecipes()
 		{
