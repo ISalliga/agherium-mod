@@ -10,17 +10,22 @@ namespace AgheriumMod.Projectiles.Summons        //We need this to basically ind
 {
     public class RorbertsStareProj : ModProjectile
     {
+		int FrameCountMeter = 0;
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Rorbert's Stare");
+			Main.projFrames[projectile.type] = 8;
+		}
 
         public override void SetDefaults()
         {
 
-            projectile.width = 42; //Set the hitbox width
-            projectile.height = 42;   //Set the hitbox heinght
+            projectile.width = 32; //Set the hitbox width
+            projectile.height = 32;   //Set the hitbox heinght
             projectile.hostile = false;    //tells the game if is hostile or not.
             projectile.friendly = false;   //Tells the game whether it is friendly to players/friendly npcs or not
             projectile.ignoreWater = true;    //Tells the game whether or not projectile will be affected by water
-            Main.projFrames[projectile.type] = 1;  //this is where you add how many frames u'r projectile has to make the animation
-            projectile.timeLeft = 3600;
+            Main.projFrames[projectile.type] = 8;  //this is where you add how many frames u'r projectile has to make the animation
             projectile.penetrate = -1; //Tells the game how many enemies it can hit before being destroyed  -1 is infinity
             projectile.tileCollide = true; //Tells the game whether or not it can collide with tiles/ terrain
             projectile.sentry = true; //tells the game that this is a sentry
@@ -66,7 +71,16 @@ namespace AgheriumMod.Projectiles.Summons        //We need this to basically ind
                 }
             }
             projectile.ai[0] += 1f;
-
+			FrameCountMeter++;
+			if (FrameCountMeter >= 20)
+			{
+				projectile.frame++;
+				if (projectile.frame >= 8)
+				{
+					projectile.frame = 0;
+				}
+				FrameCountMeter = 0;
+			}
         }
     }
 }
