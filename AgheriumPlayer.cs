@@ -18,6 +18,7 @@ namespace AgheriumMod
 {
 	public class AgheriumPlayer : ModPlayer
 	{
+		public static bool ARROWS = false;
 		public static bool isFuryBeingForged = false;
 		public override void ResetEffects()
 		{
