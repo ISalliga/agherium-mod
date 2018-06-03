@@ -13,7 +13,7 @@ namespace AgheriumMod.Items.MiscGear
     {
 		public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Smallinator");
+            DisplayName.SetDefault("Smallerizer");
             Tooltip.SetDefault("Shrinks enemies and, as long as the enemy's defense isn't below five, cuts their defense down");
         }
         public override void SetDefaults()
