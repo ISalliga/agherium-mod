@@ -17,6 +17,7 @@ namespace AgheriumMod.NPCs
 {
     public class EpicSlime : ModNPC
     {
+		bool hasMax = false;
 		int dashTime = 0;
         public override void SetStaticDefaults()
         {
@@ -27,7 +28,7 @@ namespace AgheriumMod.NPCs
         {
             npc.lifeMax = 450;
             npc.aiStyle = 1;
-            npc.damage = 35;
+            npc.damage = 10;
             npc.defense = 1;
             npc.knockBackResist = 0f;
             npc.width = 38;
@@ -65,43 +66,70 @@ namespace AgheriumMod.NPCs
 			if (NPC.downedBoss3 == true && Main.hardMode != true)
 			{
 				npc.lifeMax = 750;
-				npc.damage = 50;
+				npc.damage = 20;
 				npc.defense = 2;
 			}
 			if (Main.hardMode == true && NPC.downedMechBoss1 != true && NPC.downedMechBoss2 != true && NPC.downedMechBoss3 != true)
 			{
 				npc.lifeMax = 1100;
-				npc.damage = 65;
+				npc.damage = 30;
 				npc.defense = 3;
 			}
 			if (NPC.downedMechBoss1 == true && NPC.downedMechBoss2 == true && NPC.downedMechBoss3 == true && NPC.downedGolemBoss != true)
 			{
 				npc.lifeMax = 1450;
-				npc.damage = 90;
+				npc.damage = 40;
 				npc.defense = 4;
 			}
 			if (NPC.downedGolemBoss == true && NPC.downedMoonlord != true)
 			{
 				npc.lifeMax = 1750;
-				npc.damage = 105;
+				npc.damage = 50;
 				npc.defense = 5;
 			}
 			if (NPC.downedMoonlord == true)
 			{
 				npc.lifeMax = 2500;
-				npc.damage = 175;
+				npc.damage = 60;
 				npc.defense = 6;
 			}
 			
-			if (dashTime > 250)
+			if (hasMax == false)
+			{
+				npc.life = npc.lifeMax;
+				hasMax = true;
+			}
+			
+			if (dashTime >= 250)
 			{
 				npc.velocity = npc.DirectionTo(player.Center) * 15;
+				if (NPC.downedMechBoss1 == true && NPC.downedMechBoss2 == true && NPC.downedMechBoss3 == true)
+				{
+					{
+						Vector2 value9 = new Vector2(npc.position.X + (float)npc.width * 0.5f, npc.position.Y + (float)npc.height * 0.5f);
+						float spread = 25f * 0.0174f;
+						double startAngle = Math.Atan2(npc.velocity.X, npc.velocity.Y) - spread / 2;
+						double deltaAngle = spread / 8f;
+						double offsetAngle;
+						int damage = npc.damage;
+						int projectileShot = 100;
+						int i;
+						for (i = 0; i < 4; i++)
+						{
+							offsetAngle = (startAngle + deltaAngle * (i + i * i) / 2f) + 32f * i;
+							Projectile.NewProjectile(value9.X, value9.Y, (float)(Math.Sin(offsetAngle) * 5f), (float)(Math.Cos(offsetAngle) * 5f), projectileShot, damage, 0f, Main.myPlayer, 0f, 0f);
+							Projectile.NewProjectile(value9.X, value9.Y, (float)(-Math.Sin(offsetAngle) * 5f), (float)(-Math.Cos(offsetAngle) * 5f), projectileShot, damage, 0f, Main.myPlayer, 0f, 0f);
+						}
+					}
+				}
 				dashTime = 0;
 			}
 		}
         public override void FindFrame(int frameHeight)
         {
             npc.spriteDirection = npc.direction;
+
         }
     }
 }
+//
