@@ -2,9 +2,9 @@ Welcome to Agherium!
 This mod currently adds:
 50+ Items
 4 Bosses
+A new classification of weapons: Epics
 
 Creator: Turquoise. (Same on Discord.)
-Co-Owner: Const.
-Other helpers: ArcheRion720
+Helpers: ArcheRion720, Const.
 
-Spriters: Turquoise, Const, Calming, Insert, PhilCo, DeKrypt, Crimsoneye495
+Spriters: Turquoise, Const, Calming, Insert, PhilCo, DeKrypt, Crimsoneye495, TBoy, Santer.
