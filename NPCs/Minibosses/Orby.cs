@@ -59,13 +59,19 @@ namespace AgheriumMod.NPCs.Minibosses
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return SpawnCondition.OverworldDay.Chance * 0.003f;
+			if (NPC.downedBoss3 == true)
+			{
+				return SpawnCondition.OverworldDay.Chance * 0.002f;
+			}
+			else
+			{
+				return SpawnCondition.OverworldDay.Chance * 0f;
+			}
         }
         public override void AI()
         {
             if (spawned < 1)
             {
-                NPC.NewNPC((int)npc.Center.X + Main.rand.Next(-50, 50), (int)npc.Center.Y + Main.rand.Next(-50, 50), mod.NPCType("OrbyClone"));
                 NPC.NewNPC((int)npc.Center.X + Main.rand.Next(-50, 50), (int)npc.Center.Y + Main.rand.Next(-50, 50), mod.NPCType("OrbyClone"));
                 spawned++;
             }
@@ -86,10 +92,9 @@ namespace AgheriumMod.NPCs.Minibosses
                 npc.dontTakeDamage = false;
             }
             duplicatetime++;
-            if (duplicatetime >= 120)
+            if (duplicatetime >= 220)
             {
-                duplicatetime -= 120;
-                NPC.NewNPC((int)npc.Center.X + Main.rand.Next(-50, 50), (int)npc.Center.Y + Main.rand.Next(-50, 50), mod.NPCType("OrbyClone"));
+                duplicatetime -= 220;
                 NPC.NewNPC((int)npc.Center.X + Main.rand.Next(-50, 50), (int)npc.Center.Y + Main.rand.Next(-50, 50), mod.NPCType("OrbyClone"));
             }
         }
