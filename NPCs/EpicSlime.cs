@@ -47,12 +47,17 @@ namespace AgheriumMod.NPCs
         }
 		public override void NPCLoot()
         {
-            int chanceDrop = Main.rand.Next(1,2);
+            int chanceDrop = Main.rand.Next(1,3);
 			
 			if (chanceDrop == 1)
 			{
 				Main.NewText("An Epic has dropped! (Emblem of Arrows)", 155, 97, 174);
 				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("EmblemOfArrows"), 1);
+			}
+			if (chanceDrop == 2)
+			{
+				Main.NewText("An Epic has dropped! (Furious Emblem)", 155, 97, 174);
+				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("FuriousEmblem"), 1);
 			}
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
@@ -111,7 +116,7 @@ namespace AgheriumMod.NPCs
 						double startAngle = Math.Atan2(npc.velocity.X, npc.velocity.Y) - spread / 2;
 						double deltaAngle = spread / 8f;
 						double offsetAngle;
-						int damage = npc.damage;
+						int damage = npc.damage * (int)0.6f;
 						int projectileShot = 100;
 						int i;
 						for (i = 0; i < 4; i++)
