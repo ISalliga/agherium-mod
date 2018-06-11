@@ -42,6 +42,10 @@ namespace AgheriumMod.Projectiles
 			Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, Main.rand.Next(-10, 0), Main.rand.Next(-10, 0), mod.ProjectileType("SpectrumFlame"), 56, 0f, Main.myPlayer, 0f, 0f);
 			Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, Main.rand.Next(0, 11), Main.rand.Next(-10, 0), mod.ProjectileType("SpectrumFlame"), 32, 0f, Main.myPlayer, 0f, 0f);
 			Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, Main.rand.Next(0, 11), Main.rand.Next(-10, 0), mod.ProjectileType("SpectrumFlame"), 32, 0f, Main.myPlayer, 0f, 0f);
+			Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, Main.rand.Next(-10, 0), Main.rand.Next(-10, 0), mod.ProjectileType("SpectrumFlame"), 56, 0f, Main.myPlayer, 0f, 0f);
+			Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, Main.rand.Next(-10, 0), Main.rand.Next(-10, 0), mod.ProjectileType("SpectrumFlame"), 56, 0f, Main.myPlayer, 0f, 0f);
+			Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, Main.rand.Next(0, 11), Main.rand.Next(-10, 0), mod.ProjectileType("SpectrumFlame"), 32, 0f, Main.myPlayer, 0f, 0f);
+			Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, Main.rand.Next(0, 11), Main.rand.Next(-10, 0), mod.ProjectileType("SpectrumFlame"), 32, 0f, Main.myPlayer, 0f, 0f);
         }
 	}
 }
