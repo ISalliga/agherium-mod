@@ -47,7 +47,7 @@ namespace AgheriumMod.NPCs
         }
 		public override void NPCLoot()
         {
-            int chanceDrop = Main.rand.Next(1,3);
+            int chanceDrop = Main.rand.Next(1,5);
 			
 			if (chanceDrop == 1)
 			{
@@ -59,10 +59,20 @@ namespace AgheriumMod.NPCs
 				Main.NewText("An Epic has dropped! (Furious Emblem)", 155, 97, 174);
 				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("FuriousEmblem"), 1);
 			}
+			if (chanceDrop == 3)
+			{
+				Main.NewText("An Epic has dropped! (Brew of Colors)", 155, 97, 174);
+				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("BrewOfColors"), 1);
+			}
+			if (chanceDrop == 3)
+			{
+				Main.NewText("An Epic has dropped! (Moonthrower)", 155, 97, 174);
+				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Moonthrower"), 1);
+			}
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return SpawnCondition.OverworldDay.Chance * 0.000006f;
+            return SpawnCondition.OverworldDay.Chance * 0.0006f;
         }
         public override void AI()
         {
