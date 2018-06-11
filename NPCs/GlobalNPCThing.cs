@@ -21,6 +21,7 @@ namespace AgheriumMod.NPCs
 {
     public class GlobalNPCThing : GlobalNPC
     {
+		public bool moonburnt = false;
         public override bool InstancePerEntity
         {
             get
@@ -28,11 +29,33 @@ namespace AgheriumMod.NPCs
                 return true;
             }
         }
+		public override void ResetEffects(NPC npc)
+		{
+			moonburnt = false;
+		}
+		public override void UpdateLifeRegen(NPC npc, ref int damage)
+		{
+			if (moonburnt)
+			{
+				if (npc.lifeRegen > 0)
+				{
+					npc.lifeRegen = 0;
+				}
+				npc.lifeRegen -= 16;
+			}
+		}
         public override void NPCLoot(NPC npc)
         {
             if (npc.type == 439)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Smallinator"), 1);
+				if (Main.rand.Next(1, 3) == 1)
+				{
+					Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Smallinator"), 1);
+				}
+				else
+				{
+					Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Biginator"), 1);
+				}
             }
         }
     }
