@@ -19,11 +19,17 @@ namespace AgheriumMod
 	public class AgheriumPlayer : ModPlayer
 	{
 		int dmgValue = 0;
-		public static bool ARROWS = false;
-		public static bool isFuryBeingForged = false;
+		public bool taxonGreaves = false;
+		public bool taxonSetBonus = false;
+		public bool taxonSetBonus2 = false;
+		public bool ARROWS = false;
+		public bool isFuryBeingForged = false;
 		public override void ResetEffects()
 		{
 			isFuryBeingForged = false;
+			taxonGreaves = false;
+			taxonSetBonus = false;
+			taxonSetBonus2 = false;
 		}
 		public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
 		{
@@ -54,6 +60,44 @@ namespace AgheriumMod
 					dmgValue = 120;
 				}
 				Projectile.NewProjectile(player.Center.X, player.Center.Y, 0, 0, mod.ProjectileType("FuryJet"), dmgValue, 0.5f, player.whoAmI, 0.0f, 0.0f);
+			}
+			if (taxonGreaves == true)
+			{
+				player.AddBuff(mod.BuffType("TaxonBoost"), 180);
+			}
+		}
+		public override void ModifyHitNPC(Item item, NPC target, ref int damage, ref float knockback, ref bool crit)
+		{
+			if (taxonSetBonus == true)
+			{
+				if (crit == true)
+				{
+					player.AddBuff(mod.BuffType("TaxonDamageBoost"), 240);
+				}
+			}
+			if (taxonSetBonus2 == true)
+			{
+				if (crit == true)
+				{
+					player.AddBuff(mod.BuffType("TaxonDefenseBoost"), 240);
+				}
+			}
+		}
+		public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
+		{
+			if (taxonSetBonus == true)
+			{
+				if (crit == true)
+				{
+					player.AddBuff(mod.BuffType("TaxonDamageBoost"), 240);
+				}
+			}
+			if (taxonSetBonus2 == true)
+			{
+				if (crit == true)
+				{
+					player.AddBuff(mod.BuffType("TaxonDefenseBoost"), 240);
+				}
 			}
 		}
 	}
