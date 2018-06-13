@@ -6,5 +6,4 @@ A new classification of weapons: Epics
 
 Creator: Turquoise. (Same on Discord.)
 Helpers: ArcheRion720, Const.
-
-Spriters: Turquoise, Const, Calming, Insert, PhilCo, DeKrypt, Crimsoneye495, TBoy, Santer.
+Spriters: Turquoise, Const, Calming, Insert, PhilCo, DeKrypt, Crimsoneye495, TBoy, Santer, KittyKitCatCat.
