@@ -48,32 +48,29 @@ namespace AgheriumMod.Items.Epics
 		}
 		public override bool Shoot(Player player, ref Microsoft.Xna.Framework.Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-			if (AgheriumPlayer.ARROWS = true)
+			if (Main.hardMode != true)
 			{
-				if (Main.hardMode != true)
-				{
-					item.damage = 24;
-				}
-				if (NPC.downedBoss3 == true && Main.hardMode != true)
-				{
-					item.damage = 37;
-				}
-				if (Main.hardMode == true && NPC.downedMechBoss1 != true && NPC.downedMechBoss2 != true && NPC.downedMechBoss3 != true)
-				{
-					item.damage = 52;
-				}
-				if (NPC.downedMechBoss1 == true && NPC.downedMechBoss2 == true && NPC.downedMechBoss3 == true && NPC.downedGolemBoss != true)
-				{
-					item.damage = 69;
-				}
-				if (NPC.downedGolemBoss == true && NPC.downedMoonlord != true)
-				{
-					item.damage = 97;
-				}
-				if (NPC.downedMoonlord == true)
-				{
-					item.damage = 117;
-				}
+				item.damage = 24;
+			}
+			if (NPC.downedBoss3 == true && Main.hardMode != true)
+			{
+				item.damage = 37;
+			}
+			if (Main.hardMode == true && NPC.downedMechBoss1 != true && NPC.downedMechBoss2 != true && NPC.downedMechBoss3 != true)
+			{
+				item.damage = 52;
+			}
+			if (NPC.downedMechBoss1 == true && NPC.downedMechBoss2 == true && NPC.downedMechBoss3 == true && NPC.downedGolemBoss != true)
+			{
+				item.damage = 69;
+			}
+			if (NPC.downedGolemBoss == true && NPC.downedMoonlord != true)
+			{
+				item.damage = 97;
+			}
+			if (NPC.downedMoonlord == true)
+			{
+				item.damage = 117;
 			}
             
             for (int index = 0; index < 8; ++index)
@@ -84,13 +81,5 @@ namespace AgheriumMod.Items.Epics
             }
             return false;
         }
-		public override void AddRecipes()
-		{       
-			ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(null, "AgheriumBar", 14);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-		}
 	}
 }
