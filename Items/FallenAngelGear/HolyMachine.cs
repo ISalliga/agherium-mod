@@ -13,11 +13,11 @@ namespace AgheriumMod.Items.FallenAngelGear
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("The Holy Machine");
-			Tooltip.SetDefault("Fires two lasers that arc outwards");
+			Tooltip.SetDefault("Rapidly fires lasers");
         }
         public override void SetDefaults()
 		{
-			item.damage = 35;
+			item.damage = 30;
 			item.noMelee = true;
 			item.ranged = true;
 			item.autoReuse = true;                            //Channel so that you can held the weapon [Important]
@@ -25,9 +25,9 @@ namespace AgheriumMod.Items.FallenAngelGear
 			item.width = 28;
 			item.height = 30;
 			item.useStyle = 5;
-            item.useTime = 18;
+            item.useTime = 12;
             item.shootSpeed = 6f;				//Speed is not important here
-			item.useAnimation = 2;                         
+			item.useAnimation = 12;                         
 			item.shoot = 282;
 			item.value = Item.sellPrice(0, 3, 0, 0);
 			item.useAmmo = AmmoID.Bullet;
@@ -49,15 +49,14 @@ namespace AgheriumMod.Items.FallenAngelGear
                 {
                     value9 -= vector7;
                 }
-                int laser = Projectile.NewProjectile(vector2.X + value9.X, vector2.Y + value9.Y, speedX, speedY, mod.ProjectileType("Laser1"), (int)((double)damage * 0.75f), knockBack, player.whoAmI, 0.0f, 0.0f);
-				int laser2 = Projectile.NewProjectile(vector2.X + value9.X, vector2.Y + value9.Y, speedX, speedY, mod.ProjectileType("Laser2"), (int)((double)damage * 0.75f), knockBack, player.whoAmI, 0.0f, 0.0f);
+                int laser = Projectile.NewProjectile(vector2.X + value9.X, vector2.Y + value9.Y, speedX, speedY, mod.ProjectileType("HolyLaser"), (int)((double)damage * 0.75f), knockBack, player.whoAmI, 0.0f, 0.0f);
             }
             return false;
         }
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(null, "SmoothSilk", 16);
+			recipe.AddIngredient(null, "DarklightEssence", 16);
 			recipe.AddTile(TileID.MythrilAnvil);
 			recipe.SetResult(this);
 			recipe.AddRecipe();
