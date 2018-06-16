@@ -23,6 +23,7 @@ namespace AgheriumMod
 		public static bool downedRorbert = false;
 		public static bool downedSpodermen = false;
 		public static bool downedSoul = false;
+		public static bool trydanGenned = false;
 		
 		public override void Initialize()
 		{
