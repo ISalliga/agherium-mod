@@ -15,25 +15,26 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace AgheriumMod.NPCs
 {
-    public class RocketSpider : ModNPC
+    public class WingedSpider : ModNPC
     {
 		int queenCount;
+        int dashTime = 0;
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Rocket Spider");
+            DisplayName.SetDefault("Winged Spider");
         }
 
         public override void SetDefaults()
         {
-            npc.lifeMax = 300;
-            npc.aiStyle = 74;
-            npc.damage = 69;
+            npc.lifeMax = 450;
+            npc.aiStyle = 14;
+            npc.damage = 36;
             Main.npcFrameCount[npc.type] = 4;
             npc.defense = 3;
+            animationType = 62;
             npc.knockBackResist = 0f;
             npc.width = 50;
             npc.height = 66;
-            npc.value = Item.buyPrice(0, 0, 0, 0);
             npc.npcSlots = 0.5f;
             npc.lavaImmune = true;
             npc.noGravity = true;
@@ -46,10 +47,6 @@ namespace AgheriumMod.NPCs
                 npc.buffImmune[k] = true;
             }
         }
-        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
-        {
-            npc.lifeMax = 420;
-        }
 		public override void AI()
 		{
 			queenCount = NPC.CountNPCS(mod.NPCType("SpiderQueen"));
@@ -57,16 +54,21 @@ namespace AgheriumMod.NPCs
 			{
 				npc.active = false;
 			}
+			Player player = Main.player[npc.target];
+			dashTime++;
+			if (dashTime > 240)
+			{
+				npc.velocity = npc.DirectionTo(player.Center) * 11;
+			}
+			if (dashTime > 300)
+			{
+				npc.velocity = npc.DirectionTo(player.Center) * 3;
+				dashTime = 0;
+			}
 		}
         public override void FindFrame(int frameHeight)
         {
             npc.spriteDirection = npc.direction;
-			npc.frameCounter++;
-			if (npc.frameCounter >= 4) // ticks per frame
-			{
-				npc.frame.Y = (npc.frame.Y / frameHeight + 1) % Main.npcFrameCount[npc.type] * frameHeight;
-				npc.frameCounter = 0;
-			}
         }
     }
 }
