@@ -38,7 +38,7 @@ namespace AgheriumMod.NPCs.Bosses
 		public float vMag = 0;
 		
         public int phase = 0;
-        int despawn = 10;
+        int despawn = 0;
         bool saidPhase2 = false;
 		public override void SetStaticDefaults()
 		{
@@ -105,23 +105,35 @@ namespace AgheriumMod.NPCs.Bosses
             targetX = player.Center.X;
 			targetY = player.Center.Y - 100;
 			
-			float dist = ((float)(Math.Sqrt((targetX - npc.Center.X) * (targetX - npc.Center.X) + (targetY - npc.Center.Y) * (targetY - npc.Center.Y))));
-			tVel = dist / 20;
-			if (vMag < vMax && vMag < tVel)
+			if (Main.player[npc.target].dead || !Main.player[npc.target].active)
+            {
+                npc.velocity = npc.DirectionTo(player.Center) * -despawn;
+                despawn++;
+            }
+            if (despawn > 30)
+            {
+                npc.active = false;
+            }
+			if (despawn < 1)
 			{
-				vMag += vAccel;
-			}
-			if (vMag > tVel)
-			{
-				vMag -= vAccel;
-			}
-			
-			if (dist != 0)
-			{
-				Vector2 tPos;
-				tPos.X = targetX;
-				tPos.Y = targetY;
-				npc.velocity = npc.DirectionTo(tPos) * vMag;
+				float dist = ((float)(Math.Sqrt((targetX - npc.Center.X) * (targetX - npc.Center.X) + (targetY - npc.Center.Y) * (targetY - npc.Center.Y))));
+				tVel = dist / 20;
+				if (vMag < vMax && vMag < tVel)
+				{
+					vMag += vAccel;
+				}
+				if (vMag > tVel)
+				{
+					vMag -= vAccel;
+				}
+				
+				if (dist != 0)
+				{
+					Vector2 tPos;
+					tPos.X = targetX;
+					tPos.Y = targetY;
+					npc.velocity = npc.DirectionTo(tPos) * vMag;
+				}
 			}
 			
 			// Invincibility Phases

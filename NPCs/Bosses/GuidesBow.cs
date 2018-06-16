@@ -29,7 +29,7 @@ namespace AgheriumMod.NPCs.Bosses
 		public float vMag = 0;
 		
         public int phase = 0;
-        int despawn = 10;
+        int despawn = 1;
         bool saidPhase2 = false;
 		public override void SetStaticDefaults()
 		{
@@ -75,21 +75,28 @@ namespace AgheriumMod.NPCs.Bosses
 				playerPos.Y = player.Center.Y;
 				npc.rotation = npc.AngleTo(playerPos);
 			}
-			
+			if (Main.player[npc.target].dead || !Main.player[npc.target].active)
+            {
+                despawn++;
+            }
+            if (despawn > 30)
+            {
+                npc.active = false;
+            }
 			arrowTime++;
-				if (arrowTime >= 80)
-				{
-                    float Speed = 10f;
-                    Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
-					int damage = 18;
-                    int type = mod.ProjectileType("SoulboundArrow");
-                    float rotation = (float)Math.Atan2(vector8.Y - (player.position.Y + (player.height * 0.5f)), vector8.X - (player.position.X + (player.width * 0.5f)));
-                    int num54 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, damage, 0f, Main.myPlayer);
-                    Main.projectile[num54].velocity.X += (float)Main.rand.Next(-20, 21) * 0.05f;
-                    Main.projectile[num54].velocity.Y += (float)Main.rand.Next(-20, 21) * 0.05f;
-                    Main.projectile[num54].netUpdate = true;
-					arrowTime = 0;
-				}
+			if (arrowTime >= 80)
+			{
+                float Speed = 10f;
+                Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
+				int damage = 18;
+                int type = mod.ProjectileType("SoulboundArrow");
+                float rotation = (float)Math.Atan2(vector8.Y - (player.position.Y + (player.height * 0.5f)), vector8.X - (player.position.X + (player.width * 0.5f)));
+                int num54 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, damage, 0f, Main.myPlayer);
+                Main.projectile[num54].velocity.X += (float)Main.rand.Next(-20, 21) * 0.05f;
+                Main.projectile[num54].velocity.Y += (float)Main.rand.Next(-20, 21) * 0.05f;
+                Main.projectile[num54].netUpdate = true;
+				arrowTime = 0;
+			}
         }
 		public override void FindFrame(int frameHeight)
 		{
