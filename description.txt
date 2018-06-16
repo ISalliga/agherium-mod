@@ -1,9 +1,15 @@
 Welcome to Agherium!
 This mod currently adds:
-50+ Items
-4 Bosses
-A new classification of weapons: Epics
+80 items,
+4 bosses,
+and a new classification of weapons: Epics.
 
+List of developers (asterisk before the names of those who made relatively more changes to the mod)
 Creator: Turquoise. (Same on Discord.)
-Helpers: ArcheRion720, Const.
-Spriters: Turquoise, Const, Calming, Insert, PhilCo, DeKrypt, Crimsoneye495, TBoy, Santer, KittyKitCatCat.
+Helpers: ArcheRion720, *Dominic Karma.
+Spriters: Turquoise, Const, *Calming, Insert, *PhilCo, DeKrypt, Crimsoneye495, TBoy, *Santer, KittyKitCatCat, *PressAlt+F4.
+
+Plans for the next update:
+
+-More miscellaneous weapons
+-The Hives (new boss) (don't worry, almost nothing about it is anything like the Hives from Calamity)
