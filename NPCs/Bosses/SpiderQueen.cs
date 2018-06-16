@@ -14,7 +14,6 @@ namespace AgheriumMod.NPCs.Bosses
     [AutoloadBossHead]
     public class SpiderQueen : ModNPC
     {
-		int guardCount;
 		int venomtime = 0;
 		int fangtime = 0;
         int despawn = 0;
@@ -38,7 +37,7 @@ namespace AgheriumMod.NPCs.Bosses
             npc.width = 120;
             npc.height = 136;
             npc.damage = 150;
-            npc.defense = 12;
+            npc.defense = 9;
             npc.lifeMax = 44200;
             npc.HitSound = SoundID.NPCHit1;
             npc.DeathSound = SoundID.NPCDeath1;
@@ -76,17 +75,6 @@ namespace AgheriumMod.NPCs.Bosses
         }
         public override void AI()
         {
-			guardCount = NPC.CountNPCS(mod.NPCType("SpiderGuard"));
-			if (guardCount > 0)
-			{
-				npc.dontTakeDamage = true;
-				npc.alpha = 150;
-			}
-			else
-			{
-				npc.dontTakeDamage = false;
-				npc.alpha = 0;
-			}
 			fangtime++;
 			if (fangtime > 180)
 			{
@@ -122,6 +110,7 @@ namespace AgheriumMod.NPCs.Bosses
             }
             if (Main.player[npc.target].dead || !Main.player[npc.target].active)
             {
+				npc.velocity = npc.DirectionTo(player.Center) * -despawn;
                 despawn++;
             }
             venomtime++;
@@ -160,7 +149,7 @@ namespace AgheriumMod.NPCs.Bosses
                     }
                 }
             }
-            if (despawn >= 120)
+            if (despawn >= 30)
             {
                 npc.active = false;
             }
@@ -223,12 +212,24 @@ namespace AgheriumMod.NPCs.Bosses
 				{
 					SpiderSpawn += 230;
 					{
-						float Speed = 9f;  //projectile speed
-						Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
-						int damage = 18;  //projectile damage
-						int type = mod.ProjectileType("PropelledSpider");  //put your projectile
-						float rotation = (float)Math.Atan2(vector8.Y - (player.position.Y + (player.height * 0.5f)), vector8.X - (player.position.X + (player.width * 0.5f)));
-						int num54 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, damage, 0f, Main.myPlayer);
+						int spawnedSpider = Main.rand.Next(1,4);
+						if (spawnedSpider == 1)
+						{
+							float Speed = 9f;  //projectile speed
+							Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
+							int damage = 18;  //projectile damage
+							int type = mod.ProjectileType("PropelledSpider");  //put your projectile
+							float rotation = (float)Math.Atan2(vector8.Y - (player.position.Y + (player.height * 0.5f)), vector8.X - (player.position.X + (player.width * 0.5f)));
+							int num54 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, damage, 0f, Main.myPlayer);
+						}
+						else if (spawnedSpider == 2)
+						{
+							NPC.NewNPC((int)npc.Center.X + Main.rand.Next(-50, 50), (int)npc.Center.Y + Main.rand.Next(-50, 50), mod.NPCType("JumpingSpider"));
+						}
+						else if (spawnedSpider == 3)
+						{
+							NPC.NewNPC((int)npc.Center.X + Main.rand.Next(-50, 50), (int)npc.Center.Y + Main.rand.Next(-50, 50), mod.NPCType("WingedSpider"));
+						}
 					}
 				}
 				npc.ai[0]++;
@@ -236,30 +237,15 @@ namespace AgheriumMod.NPCs.Bosses
 				{
 					npc.TargetClosest(true);
 				}
-				if (npc.life < npc.lifeMax * 0.6 && invPhase1 == false)
-				{
-					NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("SpiderGuard"));
-					invPhase1 = true;
-				}
-				if (npc.life < npc.lifeMax * 0.3 && invPhase2 == false)
-				{
-					NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("SpiderGuard"));
-					invPhase2 = true;
-				}
-				
 			}
-			if (npc.life < npc.lifeMax * 0.6 && guardCount == 0)
+			if (npc.life < npc.lifeMax * 0.5)
 			{
 				crosshairTime++;
 				if (crosshairTime > 230)
 				{
 					Projectile.NewProjectile(npc.Center.X + Main.rand.Next(-600, 600), npc.Center.Y + Main.rand.Next(-600, 600), 0,  0, mod.ProjectileType("RocketCrosshair"), 0, 0f, Main.myPlayer);
 					Projectile.NewProjectile(npc.Center.X + Main.rand.Next(-600, 600), npc.Center.Y + Main.rand.Next(-600, 600), 0,  0, mod.ProjectileType("RocketCrosshair"), 0, 0f, Main.myPlayer);
-					if (npc.life < npc.lifeMax * 0.3)
-					{
-						Projectile.NewProjectile(npc.Center.X + Main.rand.Next(-600, 600), npc.Center.Y + Main.rand.Next(-600, 600), 0,  0, mod.ProjectileType("RocketCrosshair"), 0, 0f, Main.myPlayer);
-						Projectile.NewProjectile(npc.Center.X + Main.rand.Next(-600, 600), npc.Center.Y + Main.rand.Next(-600, 600), 0,  0, mod.ProjectileType("RocketCrosshair"), 0, 0f, Main.myPlayer);
-					}
+					Projectile.NewProjectile(npc.Center.X + Main.rand.Next(-600, 600), npc.Center.Y + Main.rand.Next(-600, 600), 0,  0, mod.ProjectileType("RocketCrosshair"), 0, 0f, Main.myPlayer);
 					if (Main.expertMode)
 					{
 						Projectile.NewProjectile(npc.Center.X + Main.rand.Next(-600, 600), npc.Center.Y + Main.rand.Next(-600, 600), 0,  0, mod.ProjectileType("RocketCrosshair"), 0, 0f, Main.myPlayer);
@@ -267,7 +253,7 @@ namespace AgheriumMod.NPCs.Bosses
 					crosshairTime = 0;
 				}
 			}
-			npc.direction = 0;
+			npc.spriteDirection = 0;
         }
     }
 }
