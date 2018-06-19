@@ -16,8 +16,7 @@ namespace AgheriumMod.Projectiles
 		public override void SetDefaults()
 		{
 			projectile.hostile = true;
-			projectile.magic = true;
-			projectile.timeLeft = 70;
+			projectile.timeLeft = 200;
 			projectile.aiStyle = 0;
 			projectile.width = 22;
 			projectile.height = 22;
@@ -25,10 +24,6 @@ namespace AgheriumMod.Projectiles
 			projectile.penetrate = -1;
 			projectile.tileCollide = false;
 			projectile.knockBack = 0;
-		}
-		public virtual void OnHitPlayer(Player target, int damage, bool crit)
-		{
-			target.endurance = target.endurance + Main.rand.Next((int)-0.5f, (int)0.1f);
 		}
 	}
 }
